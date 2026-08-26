@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#269052">
+  <title>JPD V1.2 — Jornada de Performance e Desenvolvimento</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/print.css" media="print">
+</head>
+<body>
+  <div class="shell">
+    <header class="top">
+      <div class="brand">
+        <div class="brand-logo">
+          <img src="assets/Logo.png" alt="Irani Supermercados" onerror="this.style.display='none';this.parentElement.classList.add('logo-fallback');this.parentElement.textContent='I';">
+        </div>
+        <div class="brand-copy">
+          <b>JPD <em>V1.2</em></b>
+          <small>Jornada de Performance e Desenvolvimento</small>
+        </div>
+      </div>
+      <div class="actions">
+        <button id="newTop" class="ghost">↻ Nova</button>
+        <button id="printTop" class="ghost">⎙ PDF</button>
+      </div>
+    </header>
+
+    <main>
+      <section id="start" class="view active">
+        <div class="hero">
+          <div class="hero-copy">
+            <div class="eyebrow"><span></span> JORNADA DE PERFORMANCE E DESENVOLVIMENTO</div>
+            <h1>Avaliar para <strong>reconhecer.</strong><br>Desenvolver para <strong>evoluir.</strong></h1>
+            <p>Uma evolução da avaliação original dos repositores: simples para aplicar, clara para acompanhar e pensada para transformar desempenho em desenvolvimento.</p>
+            <div class="chips">
+              <span>21 competências</span>
+              <span>Júnior / Pleno / Sênior</span>
+              <span>100% local</span>
+            </div>
+          </div>
+
+          <div class="card setup">
+            <div class="setup-top">
+              <div class="setup-icon">✓</div>
+              <div>
+                <h2>Nova avaliação</h2>
+                <p>Preencha os dados para começar.</p>
+              </div>
+            </div>
+            <div class="grid">
+              <label>Nome do colaborador *<input id="name" placeholder="Ex.: Ricardo"></label>
+              <label>Loja<input id="store" placeholder="Ex.: 001 — Av. Brasil"></label>
+              <label>Setor<input id="sector" placeholder="Ex.: Mercearia"></label>
+              <label>Avaliador<input id="evaluator" placeholder="Nome do encarregado"></label>
+              <label>Data<input id="date" type="date"></label>
+            </div>
+            <button id="startBtn" class="primary full">Iniciar avaliação <span>→</span></button>
+            <small class="privacy">⌁ Os dados existem somente durante esta sessão.</small>
+          </div>
+        </div>
+      </section>
+
+      <section id="evaluation" class="view">
+        <div class="eval">
+          <aside>
+            <div class="card person">
+              <div id="avatar" class="avatar">R</div>
+              <div><b id="personName">Colaborador</b><small id="personMeta">—</small></div>
+            </div>
+
+            <div class="card level">
+              <small>CLASSIFICAÇÃO ATUAL</small>
+              <strong id="level">—</strong>
+              <p id="levelMsg">Responda os critérios para visualizar.</p>
+            </div>
+
+            <div class="counts">
+              <div><small>MÉDIO</small><b id="cm">0</b></div>
+              <div><small>BOM</small><b id="cb">0</b></div>
+              <div><small>ÓTIMO</small><b id="co">0</b></div>
+            </div>
+
+            <div class="card progress">
+              <div><span>Progresso</span><b id="prog">0 / 21</b></div>
+              <i><u id="bar"></u></i>
+            </div>
+            <button id="finish" class="primary full">Ver resultado <span>→</span></button>
+          </aside>
+
+          <div class="content">
+            <div class="heading">
+              <div class="eyebrow"><span></span> AVALIAÇÃO DE COMPETÊNCIAS</div>
+              <h2>Como está o desempenho?</h2>
+              <p>Escolha uma opção em cada competência.</p>
+            </div>
+            <div id="criteria" class="criteria"></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="result" class="view">
+        <div class="report">
+          <div class="report-head">
+            <div>
+              <div class="eyebrow"><span></span> RESULTADO DA AVALIAÇÃO</div>
+              <h1 id="rname">Ricardo</h1>
+              <p id="rmeta">—</p>
+            </div>
+            <div class="report-brand">
+              <img src="assets/Logo.png" alt="Irani Supermercados" onerror="this.style.display='none';">
+              <strong id="badge" class="badge">PLENO</strong>
+            </div>
+          </div>
+
+          <div class="result-grid">
+            <div class="card score">
+              <small>DESEMPENHO GERAL</small>
+              <b id="percent">0%</b>
+              <p>Indicador visual. A classificação segue a regra oficial do JPD.</p>
+              <div class="stats">
+                <span>MÉDIO <b id="rm">0</b></span>
+                <span>BOM <b id="rb">0</b></span>
+                <span>ÓTIMO <b id="ro">0</b></span>
+              </div>
+            </div>
+
+            <div class="card insight">
+              <small>LEITURA DO RESULTADO</small>
+              <h2 id="rtitle">—</h2>
+              <p id="rmsg">—</p>
+              <div id="dev" class="dev"></div>
+            </div>
+          </div>
+
+          <div class="card detail">
+            <div class="detail-head">
+              <div><small>DETALHAMENTO</small><h2>Competências avaliadas</h2></div>
+              <button id="edit" class="secondary">← Editar</button>
+            </div>
+            <div id="resultList" class="result-list"></div>
+          </div>
+
+          <div class="result-actions">
+            <button id="print" class="primary">⎙ Imprimir / Salvar PDF</button>
+            <button id="png" class="secondary">▣ Exportar PNG</button>
+            <button id="new" class="ghost dark">↻ Nova avaliação</button>
+          </div>
+
+          <div class="signature">
+            <span>Avaliador: __________________________________</span>
+            <span>Data: ____ / ____ / ______</span>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer><span>JPD V1.2 • IRANI SUPERMERCADOS</span><span>Ferramenta local • sem armazenamento permanente</span></footer>
+  </div>
+
+  <div id="toast" class="toast"></div>
+  <script src="js/classificacao.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
