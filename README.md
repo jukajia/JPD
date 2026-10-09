@@ -1,5 +1,3 @@
-# JPD
-JORNADA DE PERFORMANCE E DESENVOLVIMENTO
 JPS V2 — IRANI EDITION
 
 1. Coloque a logo oficial com o nome exatamente:
