@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#269052">
-  <title>JPD V1.2 — Jornada de Performance e Desenvolvimento</title>
+  <title>JPD Lite V2.0 — Jornada de Performance e Desenvolvimento</title>
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/print.css" media="print">
 </head>
@@ -32,9 +32,9 @@
           <div class="hero-copy">
             <div class="eyebrow"><span></span> JORNADA DE PERFORMANCE E DESENVOLVIMENTO</div>
             <h1>Avaliar para <strong>reconhecer.</strong><br>Desenvolver para <strong>evoluir.</strong></h1>
-            <p>Uma evolução da avaliação original dos repositores: simples para aplicar, clara para acompanhar e pensada para transformar desempenho em desenvolvimento.</p>
+            <p>Avaliação de desempenho simples, objetiva e aplicável a diferentes funções, pensada para reconhecer resultados e orientar o desenvolvimento profissional.</p>
             <div class="chips">
-              <span>21 competências</span>
+              <span>20 competências</span>
               <span>Júnior / Pleno / Sênior</span>
               <span>100% local</span>
             </div>
@@ -51,7 +51,14 @@
             <div class="grid">
               <label>Nome do colaborador *<input id="name" placeholder="Ex.: Ricardo"></label>
               <label>Loja<input id="store" placeholder="Ex.: 001 — Av. Brasil"></label>
-              <label>Setor<input id="sector" placeholder="Ex.: Mercearia"></label>
+              <label>Função *<select id="role">
+                <option value="">Selecione...</option>
+                <option>Repositor</option>
+                <option>Operador de Caixa</option>
+                <option>Depósito</option>
+                <option>Açougue</option>
+                <option>Padaria</option>
+              </select></label>
               <label>Avaliador<input id="evaluator" placeholder="Nome do encarregado"></label>
               <label>Data<input id="date" type="date"></label>
             </div>
@@ -82,7 +89,7 @@
             </div>
 
             <div class="card progress">
-              <div><span>Progresso</span><b id="prog">0 / 21</b></div>
+              <div><span>Progresso</span><b id="prog">0 / 20</b></div>
               <i><u id="bar"></u></i>
             </div>
             <button id="finish" class="primary full">Ver resultado <span>→</span></button>
@@ -155,7 +162,7 @@
       </section>
     </main>
 
-    <footer><span>JPD V1.2 • IRANI SUPERMERCADOS</span><span>Ferramenta local • sem armazenamento permanente</span></footer>
+    <footer><span>JPD Lite V2.0 • IRANI SUPERMERCADOS</span><span>Ferramenta local • sem armazenamento permanente</span></footer>
   </div>
 
   <div id="toast" class="toast"></div>
