@@ -1,27 +1,26 @@
 const $ = id => document.getElementById(id);
 
 const CRITERIA = [
-  {id:1,name:'ATENDIMENTO AO CLIENTE'},
-  {id:2,name:'INICIATIVA A REPOSIÇÃO (PROCURA O QUE FAZER)'},
-  {id:3,name:'INICIATIVA DE ORGANIZAÇÃO (INICIATIVA EM FAZER LAYOUT)'},
-  {id:4,name:'TRABALHO EM EQUIPE'},
-  {id:5,name:'INOVAÇÕES (IDEIAS NOVAS)'},
-  {id:6,name:'AGILIDADE'},
-  {id:7,name:'CUIDADOSO NO DESEMPENHO DA FUNÇÃO (SE DANIFICA PRODUTO)'},
-  {id:8,name:'HONESTIDADE'},
-  {id:9,name:'RESPEITO COM OS DEMAIS COLEGAS'},
-  {id:10,name:'OBEDIENTE'},
-  {id:11,name:'ATENTO (MANTÉM-SE FOCADO NA ATIVIDADE)'},
-  {id:12,name:'SEGURANÇA EM REPASSAR O QUE SABE PARA OS COLEGAS'},
-  {id:13,name:'SE PREOCUPA COM A LIMPEZA DOS PRODUTOS E AS SESSÕES'},
-  {id:14,name:'SE PREOCUPA COM O P.V.P.S'},
-  {id:15,name:'ORGANIZAÇÃO DO SEU DIA DE TRABALHO (CONSEGUE SE ORGANIZAR PARA FAZER TODO O TRABALHO DELEGADO DURANTE O DIA)'},
-  {id:16,name:'DOMÍNIO DA FUNÇÃO'},
-  {id:17,name:'CUIDADOSO COM PREÇOS NA SESSÃO'},
-  {id:18,name:'RUPTURAS (MANTÉM A SESSÃO SEMPRE CHEIA)'},
-  {id:19,name:'CONHECIMENTO DOS PRODUTOS'},
-  {id:20,name:'PONTUALIDADE NO HORÁRIO'},
-  {id:21,name:'CONSEGUE SE MANTER CALMO EM SITUAÇÕES DE ESTRESSE'}
+  {id:1,name:'Demonstra clareza sobre suas funções no cargo atual?'},
+  {id:2,name:'Cumpre suas tarefas dentro dos prazos estabelecidos?'},
+  {id:3,name:'A qualidade do trabalho atende às expectativas do setor?'},
+  {id:4,name:'Mantém organização no ambiente de trabalho?'},
+  {id:5,name:'Trabalha bem em equipe com colegas e outros setores?'},
+  {id:6,name:'Adapta-se bem a mudanças e novas orientações?'},
+  {id:7,name:'Demonstra interesse em aprender novas habilidades?'},
+  {id:8,name:'Apresenta potencial para assumir novas responsabilidades?'},
+  {id:9,name:'Lida adequadamente com situações de pressão ou alta demanda?'},
+  {id:10,name:'Segue corretamente os procedimentos e normas da empresa?'},
+  {id:11,name:'Demonstra iniciativa na resolução de problemas?'},
+  {id:12,name:'Aceita feedbacks e demonstra evolução após orientações?'},
+  {id:13,name:'Atinge as metas estabelecidas para o setor?'},
+  {id:14,name:'A comunicação com colegas e liderança é eficiente?'},
+  {id:15,name:'Demonstra motivação no ambiente de trabalho?'},
+  {id:16,name:'Demonstra interesse em crescimento profissional?'},
+  {id:17,name:'Está apto para assumir um cargo de maior responsabilidade?'},
+  {id:18,name:'Demonstra evolução nos pontos de melhoria identificados no desempenho?'},
+  {id:19,name:'Contribui com sugestões para melhoria de processos?'},
+  {id:20,name:'Poderia atuar com bom desempenho em outro setor da empresa?'}
 ];
 
 const state = {employee:{},answers:{}};
@@ -55,18 +54,20 @@ function renderCriteria(){
 
 function startEvaluation(){
   const name = $('name').value.trim();
+  const role = $('role').value;
   if(!name){showToast('Informe o nome do colaborador.');$('name').focus();return;}
+  if(!role){showToast('Selecione a função do colaborador.');$('role').focus();return;}
   state.employee = {
     name,
     store:$('store').value.trim(),
-    sector:$('sector').value.trim(),
+    role,
     evaluator:$('evaluator').value.trim(),
     date:$('date').value
   };
   state.answers = {};
   $('personName').textContent = name;
   $('avatar').textContent = name.charAt(0).toUpperCase();
-  $('personMeta').textContent = [state.employee.store,state.employee.sector].filter(Boolean).join(' • ') || 'Avaliação profissional';
+  $('personMeta').textContent = [state.employee.store,state.employee.role].filter(Boolean).join(' • ') || 'Avaliação profissional';
   renderCriteria();
   updateCounters();
   switchView('evaluation');
@@ -112,7 +113,7 @@ function showResult(){
   const level=classify(counts.medium,counts.good,counts.great);
   const score=((counts.medium*50+counts.good*75+counts.great*100)/CRITERIA.length);
   $('rname').textContent=state.employee.name;
-  $('rmeta').textContent=[state.employee.store,state.employee.sector,formatDate(state.employee.date)].filter(Boolean).join(' • ');
+  $('rmeta').textContent=[state.employee.store,state.employee.role,formatDate(state.employee.date)].filter(Boolean).join(' • ');
   $('badge').textContent=level;
   $('badge').className='badge '+levelClass(level);
   $('percent').textContent=score.toFixed(1).replace('.',',')+'%';
@@ -133,7 +134,8 @@ function showResult(){
 function resetEvaluation(){
   if(!confirm('Iniciar nova avaliação? Os dados atuais serão apagados.'))return;
   state.answers={};
-  ['name','store','sector','evaluator'].forEach(id=>$(id).value='');
+  ['name','store','evaluator'].forEach(id=>$(id).value='');
+  $('role').value='';
   $('date').value=new Date().toISOString().slice(0,10);
   switchView('start');
 }
@@ -156,10 +158,10 @@ function exportPNG(){
   const svg=`<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="${width}" height="${height}">
     <rect width="100%" height="100%" fill="#f6f9f7"/>
     <rect x="40" y="35" width="1320" height="1630" rx="28" fill="white" stroke="#dfe9e2"/>
-    <text x="80" y="100" font-family="Poppins,Arial,sans-serif" font-size="20" font-weight="700" fill="#269052">JPS V2</text>
+    <text x="80" y="100" font-family="Poppins,Arial,sans-serif" font-size="20" font-weight="700" fill="#269052">JPD LITE V2.0</text>
     <text x="80" y="150" font-family="Poppins,Arial,sans-serif" font-size="38" font-weight="800" fill="#17231b">Jornada de Performance e Desenvolvimento</text>
     <text x="80" y="215" font-family="Poppins,Arial,sans-serif" font-size="30" font-weight="800" fill="#17231b">${escapeHtml(state.employee.name)}</text>
-    <text x="80" y="250" font-family="Poppins,Arial,sans-serif" font-size="17" fill="#69766e">${escapeHtml([state.employee.store,state.employee.sector,state.employee.evaluator].filter(Boolean).join(' • '))}</text>
+    <text x="80" y="250" font-family="Poppins,Arial,sans-serif" font-size="17" fill="#69766e">${escapeHtml([state.employee.store,state.employee.role,state.employee.evaluator].filter(Boolean).join(' • '))}</text>
     <text x="1080" y="230" font-family="Poppins,Arial,sans-serif" font-size="28" font-weight="800" fill="${levelColor}">${level}</text>
     <text x="80" y="320" font-family="Poppins,Arial,sans-serif" font-size="17" fill="#91a097">DESEMPENHO GERAL</text>
     <text x="80" y="360" font-family="Poppins,Arial,sans-serif" font-size="34" font-weight="800" fill="#269052">${score}%</text>
@@ -171,7 +173,7 @@ function exportPNG(){
   image.onload=()=>{
     const canvas=document.createElement('canvas');canvas.width=width*1.3;canvas.height=height*1.3;
     const ctx=canvas.getContext('2d');ctx.drawImage(image,0,0,canvas.width,canvas.height);URL.revokeObjectURL(url);
-    const link=document.createElement('a');link.download='JPS_'+state.employee.name.replace(/[^a-z0-9]/gi,'_')+'.png';link.href=canvas.toDataURL('image/png');link.click();
+    const link=document.createElement('a');link.download='JPD_'+state.employee.name.replace(/[^a-z0-9]/gi,'_')+'.png';link.href=canvas.toDataURL('image/png');link.click();
   };
   image.onerror=()=>{URL.revokeObjectURL(url);showToast('Não foi possível gerar a imagem. Use Imprimir / Salvar PDF.');};
   image.src=url;
