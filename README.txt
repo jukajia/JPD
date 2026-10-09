@@ -1,19 +1,25 @@
-JPS V2 — IRANI EDITION
+# JPD Lite V2.0 — Jornada de Performance e Desenvolvimento
 
-1. Coloque a logo oficial com o nome exatamente:
-   assets/Logo.png
+Versão mobile-first para avaliação de desempenho no Portal de Desenvolvimento Irani.
 
-2. Abra o arquivo:
-   JPD.html
+## Funções iniciais
+- Repositor
+- Operador de Caixa
+- Depósito
+- Açougue
+- Padaria
 
-3. O sistema funciona localmente e não possui backend/banco.
+## Questionário
+20 perguntas de desempenho com linguagem transversal, evitando critérios excessivamente específicos de um único setor.
 
-4. A lógica de classificação permanece:
-   - JÚNIOR: Médio >= 5 OU nenhuma avaliação preenchida
-   - SÊNIOR: Médio = 0, Bom < 5 e Ótimo > 16
-   - PLENO: todos os demais casos
+## Classificação preservada
+- JÚNIOR: 5 ou mais respostas MÉDIO (ou avaliação ainda vazia)
+- SÊNIOR: 0 MÉDIO, menos de 5 BOM e mais de 16 ÓTIMO
+- PLENO: demais combinações
 
-5. Portanto, por exemplo, 22 Ótimos + 1 Médio continua PLENO.
+## Uso
+Abra `index.html` ou publique toda a pasta no GitHub Pages. Não há backend e os dados não são armazenados permanentemente.
 
-6. PDF: botão Imprimir / Salvar PDF.
-7. PNG: botão Exportar PNG.
+## Exportação
+- Imprimir / Salvar PDF
+- Exportar PNG
